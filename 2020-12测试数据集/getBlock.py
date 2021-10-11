@@ -5,8 +5,11 @@ import codecs
 
 #获取区块边的信息
 def dealJson():
+    #json文件对应的文件夹
     baseurl = '/Users/hejiajin1/PycharmProjects/交易模式/2020-12测试数据集/sourcedata/'
+    # 输出边对应的文件夹
     outbaseurl = './data/'
+    # 输出地址和标签对应的文件夹
     outaddressurl='./datatag/'
     outcsvlist = os.listdir(outbaseurl)
     addresslist = os.listdir(baseurl)
@@ -72,6 +75,7 @@ def dealJson():
                 print(e)
         txFile.close()
 
+#获取区块地址的信息，并保存
 def getAddressSet(alist, blist,filepath):
     addressset = []
     for adata in alist:
@@ -81,6 +85,8 @@ def getAddressSet(alist, blist,filepath):
     df = pd.DataFrame(addressset)
     df.to_csv(filepath, mode='a',header=False,index=False)
     addressset.clear()
+
+#保存区块地址的信息
 def arrange_Tocsv(alist, blist, filepath):
     name = ['source', 'target']
     csvlist = []
@@ -95,6 +101,7 @@ def arrange_Tocsv(alist, blist, filepath):
         datalist = pd.DataFrame(columns=name, data=csvlist)
         datalist.to_csv(filepath, mode='a', header=False, index=False)
         csvlist.clear()
+#测试集，勿删
 def test():
     baseurl = 'I:/ABlockChainData/区块链测试数据集/2020-12/659364.json'
     hunbiurl='I:/混币/BitcoinFog/BitcoinFog/BitcoinFog/1A5cbwFqo13BEuWi64gk17hTGUn4N6FbMG.json'
